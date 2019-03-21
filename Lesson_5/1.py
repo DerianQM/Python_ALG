@@ -5,3 +5,39 @@
 вывести наименования предприятий, чья прибыль выше среднего и отдельно
 вывести наименования предприятий, чья прибыль ниже среднего.
 """
+
+from collections import namedtuple
+
+base = namedtuple('base', 'id kv1 kv2 kv3 kv4')
+
+n = int(input('Введите количество предприятий'))
+st=[0]*n
+mid_kv=[] # чтобы каждый раз не вычислять среднее, можно еще 1 аргумент добавить в коллекцию и он будет суммарной прибылью
+max_mn=[] # да, 3 пустых списка, потому как сортировка
+min_mn=[]
+mn_nll=[]
+for i in range(n):
+    st [i] =    base(
+        id = input('Название предприятия'),
+        kv1 = int(input('прибыль за 1й квартал')),
+        kv2 = int(input('прибыль за 2й квартал')),
+        kv3 = int(input('прибыль за 3й квартал')),
+        kv4 = int(input('прибыль за 4й квартал')) )
+    mid_kv.append((st[i].kv1+st[i].kv2+st[i].kv3+st[i].kv4))
+
+mn = sum(mid_kv)/n
+
+print(f'Средняя прибыль всех предприятий - {mn}')
+
+for i in range(n):
+    if (mid_kv[i]) < mn:
+        min_mn.append(st[i].id)
+    elif (mid_kv[i]) > mn:
+        max_mn.append(st[i].id)
+    else:
+        mn_nll.append(st[i].id)
+
+print(f'Предприятия {min_mn} имеет прибыль ниже {mn}')
+print(f'Предприятия {max_mn} имеет прибыль выше {mn}')
+if len(mn_nll)>0:
+    print(f'Прибыль предприятий {mn_nll} равна средней {mn}')

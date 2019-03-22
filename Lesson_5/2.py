@@ -12,7 +12,7 @@ mass_s1=[]
 mass_s2=[]
 massumm=[]
 
-d1 = collections.Counter()
+d1 = collections.defaultdict()
 
 def input_cl(mass,i):
 
@@ -26,7 +26,7 @@ def input_cl(mass,i):
             mass.clear()
             input_cl(mass,i)
             break
-    return s1
+
 
 def createCounter(d1):
     for i in range(0,16):
@@ -56,10 +56,9 @@ def revert(cl):
     return mass
 
 def view(massum,d1):
-    result=[]
+    result=collections.deque()
     for i in range(len(massumm)):
-        result.append(list(d1.keys())[list(d1.values()).index(massumm[i])])
-    result.reverse()
+        result.appendleft(list(d1.keys())[list(d1.values()).index(massumm[i])])
     return result
 
 input_cl(mass_s1,1)
@@ -73,8 +72,8 @@ part2 = retrans(mass_s2,d1)
 
 massumm =revert(part1+part2)
 
-print(f"результат сумммы числа {mass_s1} и числа {mass_s2} равен {view(massumm,d1)}")
+print(f"Результат суммы числа {mass_s1} и числа {mass_s2} равен {view(massumm,d1)}")
 massumm.clear()
 
 massumm = revert(part1*part2)
-print(f"результат умножения числа {mass_s1} и числа {mass_s2} равен {view(massumm,d1)}")
+print(f"Результат умножения числа {mass_s1} и числа {mass_s2} равен {view(massumm,d1)}")

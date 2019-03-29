@@ -22,6 +22,8 @@ def sorted(mass):
                 flag = 1
         if flag == 0 :
             break
+        else:
+            flag = 0
     return mass
 
 

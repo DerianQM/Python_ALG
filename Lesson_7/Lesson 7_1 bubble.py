@@ -21,6 +21,7 @@ def sorted(mass):
                 mass[j], mass[j+1] = mass[j+1], mass[j]
                 flag = 1
         if flag == 0 :
+            print(f'флаг сработал на {i} элементе ')
             break
         else:
             flag = 0

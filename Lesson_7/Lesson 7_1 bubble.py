@@ -14,10 +14,14 @@ from memory_profiler import profile
 
 
 def sorted(mass):
+    flag = 0
     for i in range(len(mass)):
         for j in range(len(mass)-1):
             if mass[j] < mass[j+1]:
                 mass[j], mass[j+1] = mass[j+1], mass[j]
+                flag = 1
+        if flag == 0 :
+            break
     return mass
 
 
